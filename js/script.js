@@ -14,13 +14,13 @@ ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
 ctx.strokeStyle = 'red';
 
-canvas.addEventListener('mousedown', down, false);
-canvas.addEventListener('mousemove', move, false);
-canvas.addEventListener('mouseup', up, false);
-canvas.addEventListener('mouseout', up, false);
-canvas.addEventListener('touchstart', down, false);
-canvas.addEventListener('touchmove', move, false);
-canvas.addEventListener('touchend', up, false);
+canvas.addEventListener('mousedown', down);
+canvas.addEventListener('touchstart', down);
+canvas.addEventListener('mousemove', move);
+canvas.addEventListener('touchmove', move);
+canvas.addEventListener('mouseup', up);
+canvas.addEventListener('mouseout', up);
+canvas.addEventListener('touchend', up);
 
 deleteButton.addEventListener('click', clearCanvas);
 
@@ -29,6 +29,11 @@ function down(e) {
     const { x, y } = getPos(e);
     points.push({ x, y });
     beginPoint = { x, y };
+    if (e instanceof MouseEvent) {
+        log('mouse');
+    } else if (e instanceof TouchEvent) {
+        log('touch');
+    }
 }
 
 function move(e) {
@@ -89,4 +94,10 @@ function clearCanvas() {
     isDown = false;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     points.length = 0;
+}
+
+function log(msg) {
+    const logElement = document.querySelector('.log');
+    logElement.innerHTML = `${logElement.innerHTML}\n<p>${msg}</p>`;
+    logElement.scroll(0, 1000);
 }

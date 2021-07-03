@@ -10,6 +10,30 @@ body {
     font-family: 'Roboto', 'Helvetica', sans-serif;
 }
 
+.console {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.log {
+    background-color: #fff;
+    height: 64px;
+    width: 320px;
+    padding: 0 4px;
+    overflow: hidden;
+    font-family: monospace;
+    font-size: 12px;
+}
+
+.log p {
+    margin: 4px 0;
+}
+
 .tools {
     position: absolute;
     right: 0;
