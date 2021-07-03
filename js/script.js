@@ -14,13 +14,6 @@ ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
 ctx.strokeStyle = '#0780ff';
 
-// canvas.addEventListener('mousedown', down);
-// canvas.addEventListener('touchstart', down);
-// canvas.addEventListener('mousemove', move);
-// canvas.addEventListener('touchmove', move);
-// canvas.addEventListener('mouseup', up);
-// canvas.addEventListener('mouseout', up);
-// canvas.addEventListener('touchend', up);
 
 canvas.addEventListener('pointerdown', down);
 canvas.addEventListener('pointermove', move);
@@ -28,20 +21,23 @@ canvas.addEventListener('pointerup', up);
 
 deleteButton.addEventListener('click', clearCanvas);
 
-function down(e) {
+function down(event) {
     isDown = true;
-    const { x, y } = getPos(e);
+    const x = event.x;
+    const y = event.y
     points.push({ x, y });
     beginPoint = { x, y };
 
-    console.log(e.pointerType);
-    log(e.pointerType)
+    console.log(event);
+    log(event.pointerType)
 }
 
-function move(e) {
+function move(event) {
     if (!isDown) return;
 
-    const { x, y } = getPos(e);
+    const x = event.x;
+    const y = event.y
+
     points.push({ x, y });
 
     if (points.length > 3) {
@@ -58,7 +54,8 @@ function move(e) {
 
 function up(e) {
     if (!isDown) return;
-    const { x, y } = getPos(e);
+    const x = event.x;
+    const y = event.y
     points.push({ x, y });
     if (points.length > 3) {
         const lastTwoPoints = points.slice(-2);
@@ -69,19 +66,6 @@ function up(e) {
     beginPoint = null;
     isDown = false;
     points = [];
-}
-
-function getPos(e) {
-    if (e.type === 'touchstart' || e.type === 'touchmove' || e.type === 'touchend') {
-        return {
-            x: e.touches[0].clientX,
-            y: e.touches[0].clientY
-        }
-    }
-    return {
-        x: e.clientX,
-        y: e.clientY
-    }
 }
 
 function drawLine(beginPoint, controlPoint, endPoint) {
