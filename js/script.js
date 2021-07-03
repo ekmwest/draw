@@ -13,6 +13,7 @@ ctx.lineWidth = 4;
 ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
 ctx.strokeStyle = '#0780ff';
+ctx.strokeStyle = 'red';
 
 
 canvas.addEventListener('pointerdown', down);
