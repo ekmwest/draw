@@ -12,15 +12,19 @@ const ctx = canvas.getContext('2d');
 ctx.lineWidth = 4;
 ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
-ctx.strokeStyle = 'red';
+ctx.strokeStyle = '#0780ff';
 
-canvas.addEventListener('mousedown', down);
-canvas.addEventListener('touchstart', down);
-canvas.addEventListener('mousemove', move);
-canvas.addEventListener('touchmove', move);
-canvas.addEventListener('mouseup', up);
-canvas.addEventListener('mouseout', up);
-canvas.addEventListener('touchend', up);
+// canvas.addEventListener('mousedown', down);
+// canvas.addEventListener('touchstart', down);
+// canvas.addEventListener('mousemove', move);
+// canvas.addEventListener('touchmove', move);
+// canvas.addEventListener('mouseup', up);
+// canvas.addEventListener('mouseout', up);
+// canvas.addEventListener('touchend', up);
+
+canvas.addEventListener('pointerdown', down);
+canvas.addEventListener('pointermove', move);
+canvas.addEventListener('pointerup', up);
 
 deleteButton.addEventListener('click', clearCanvas);
 
@@ -29,11 +33,9 @@ function down(e) {
     const { x, y } = getPos(e);
     points.push({ x, y });
     beginPoint = { x, y };
-    if (e instanceof MouseEvent) {
-        log('mouse');
-    } else if (e instanceof TouchEvent) {
-        log('touch');
-    }
+
+    console.log(e.pointerType);
+    log(e.pointerType)
 }
 
 function move(e) {
