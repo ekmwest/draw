@@ -15,7 +15,6 @@ ctx.lineCap = 'round';
 ctx.strokeStyle = '#0780ff';
 ctx.strokeStyle = 'red';
 
-
 canvas.addEventListener('pointerdown', down);
 canvas.addEventListener('pointermove', move);
 canvas.addEventListener('pointerup', up);
@@ -30,7 +29,7 @@ function down(event) {
     beginPoint = { x, y };
 
     console.log(event);
-    log(event.pointerType)
+    log('down: ' + event.pointerType)
 }
 
 function move(event) {
@@ -53,8 +52,9 @@ function move(event) {
     }
 }
 
-function up(e) {
+function up(event) {
     if (!isDown) return;
+    log('up');
     const x = event.x;
     const y = event.y
     points.push({ x, y });

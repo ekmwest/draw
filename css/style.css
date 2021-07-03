@@ -22,7 +22,7 @@ body {
 
 .log {
     background-color: #fff;
-    height: 64px;
+    height: 96px;
     width: 320px;
     padding: 0 4px;
     overflow: hidden;
@@ -39,4 +39,13 @@ body {
     right: 0;
     top: 0;
     width: 50px;
+}
+
+.canvas {
+    width: 800px;
+    height: 600px;
+    margin: 128px auto;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .1);
+    border-radius: 4px;
 }
